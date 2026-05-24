@@ -61,4 +61,10 @@ intents = discord.Intents.default()
 intents.message_content = True
 
 client = Robodile(intents=intents)
-client.run(os.environ["ROBODILE_TOKEN"])
+
+if os.environ.get("ROBODILE_TOKEN") is not None:
+    client.run(os.environ.get("ROBODILE_TOKEN"))
+else: 
+    token_file = open("token.txt")
+    token = token_file.read()
+    client.run(token)
